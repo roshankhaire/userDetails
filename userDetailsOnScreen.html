@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  onsubmit="saveTolocal(event)">
+        <label>Name</label>
+        <input type="text" name="name"/>
+        <label>Email</label>
+        <input type="text" name="email"/>
+        <label>age</label>
+        <input type="age" name="age"/>
+        <button>submit</button>
+    </form>
+    <ul id="listOfUsers"></ul>
+    <script type="text/javascript">
+        
+   function saveTolocal(event){
+    event.preventDefault();
+    var names=event.target.name.value;
+    var emails=event.target.email.value;
+     var ages=event.target.age.value;
+    var  myObj={
+    names,
+    emails,
+    ages
+};
+     
+      
+      localStorage.setItem(myObj.emails ,JSON.stringify(myObj));
+      console.log(localStorage);
+      registerUsersOnScreen(myObj)
+    
+}
+   function registerUsersOnScreen(user){
+    var parentNode=document.getElementById('listOfUsers');
+    //console.log(parentNode);
+    var childNode=`<li> ${user.names} - ${user.emails} -${user.ages}</li>`;
+    parentNode.innerHTML=parentNode.innerHTML + childNode;
+
+   }
+
+
+
+
+      
+    </script>
+</body>
+</html>
